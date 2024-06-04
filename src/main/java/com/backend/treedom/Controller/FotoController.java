@@ -1,6 +1,7 @@
 package com.backend.treedom.Controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Base64;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,10 +45,10 @@ public class FotoController {
     }
 
     @GetMapping("/images/{userId}")
-    public ResponseEntity<List<String>> getImages(@PathVariable int userId) {
+    public ResponseEntity<List<Map<String, String>>> getImages(@PathVariable int userId) {
         try {
-            List<String> images = fotoService.getAllImagesDataAsBase64ByUserId(userId);
-            return new ResponseEntity<>(images, HttpStatus.OK);
+            List<Map<String, String>> imagesData = fotoService.getAllImagesDataAsBase64ByUserId(userId);
+            return new ResponseEntity<>(imagesData, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

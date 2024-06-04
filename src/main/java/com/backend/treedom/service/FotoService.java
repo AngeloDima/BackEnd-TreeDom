@@ -2,7 +2,9 @@ package com.backend.treedom.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Base64;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,12 +33,16 @@ public class FotoService {
         }
     }
 
-    public List<String> getAllImagesDataAsBase64ByUserId(int userId) {
+    public List<Map<String, String>> getAllImagesDataAsBase64ByUserId(int userId) {
         List<fotoModel> images = fotoRepository.findByUserId(userId);
-        List<String> imageDataList = new ArrayList<>();
+        List<Map<String, String>> imageDataList = new ArrayList<>();
         for (fotoModel image : images) {
-            String imageDataAsBase64 = Base64.getEncoder().encodeToString(image.getImagePath());
-            imageDataList.add(imageDataAsBase64);
+            Map<String, String> imageData = new HashMap<>();
+            imageData.put("id", String.valueOf(image.getId()));
+            imageData.put("data", Base64.getEncoder().encodeToString(image.getImagePath()));
+            imageData.put("description", image.getDescription());
+
+            imageDataList.add(imageData);
         }
         return imageDataList;
     }
