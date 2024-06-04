@@ -14,6 +14,16 @@ public class fotoModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    private int userId;
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
     @Lob
     private byte[] imagePath;
 

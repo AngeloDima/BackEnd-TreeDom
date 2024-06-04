@@ -27,13 +27,14 @@ public class FotoController {
 
     @PostMapping("/uploadImage")
     public ResponseEntity<?> uploadImage(@RequestParam("file") MultipartFile file,
-            @RequestParam("description") String description) {
+            @RequestParam("description") String description,
+            @RequestParam("userId") int userId) {
         try {
             if (file.isEmpty()) {
                 return new ResponseEntity<>("Il file è vuoto", HttpStatus.BAD_REQUEST);
             }
 
-            fotoModel foto = fotoService.saveImage(file, description);
+            fotoModel foto = fotoService.saveImage(file, description, userId);
 
             return new ResponseEntity<>(foto, HttpStatus.CREATED);
         } catch (Exception e) {
@@ -42,10 +43,10 @@ public class FotoController {
         }
     }
 
-    @GetMapping("/images")
-    public ResponseEntity<List<String>> getImages() {
+    @GetMapping("/images/{userId}")
+    public ResponseEntity<List<String>> getImages(@PathVariable int userId) {
         try {
-            List<String> images = fotoService.getAllImagesDataAsBase64();
+            List<String> images = fotoService.getAllImagesDataAsBase64ByUserId(userId);
             return new ResponseEntity<>(images, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

@@ -17,22 +17,22 @@ public class FotoService {
     @Autowired
     private FotoRepository fotoRepository;
 
-    public fotoModel saveImage(MultipartFile file, String description) throws Exception {
+    public fotoModel saveImage(MultipartFile file, String description, int userId) throws Exception {
         try {
             byte[] imageData = file.getBytes();
 
             fotoModel foto = new fotoModel();
             foto.setImagePath(imageData);
             foto.setDescription(description);
-
+            foto.setUserId(userId);
             return fotoRepository.save(foto);
         } catch (Exception e) {
             throw new Exception("Impossibile salvare l'immagine: " + e.getMessage());
         }
     }
 
-    public List<String> getAllImagesDataAsBase64() {
-        List<fotoModel> images = fotoRepository.findAll();
+    public List<String> getAllImagesDataAsBase64ByUserId(int userId) {
+        List<fotoModel> images = fotoRepository.findByUserId(userId);
         List<String> imageDataList = new ArrayList<>();
         for (fotoModel image : images) {
             String imageDataAsBase64 = Base64.getEncoder().encodeToString(image.getImagePath());
