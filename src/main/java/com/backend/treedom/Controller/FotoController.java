@@ -26,6 +26,7 @@ public class FotoController {
     @Autowired
     private FotoService fotoService;
 
+    // EndPoint per il caricamento dei dati per la foto (img, descrizione, userId)
     @PostMapping("/uploadImage")
     public ResponseEntity<?> uploadImage(@RequestParam("file") MultipartFile file,
             @RequestParam("description") String description,
@@ -44,6 +45,7 @@ public class FotoController {
         }
     }
 
+    // EndPoint per la get della foto e delle relative informazioni
     @GetMapping("/images/{userId}")
     public ResponseEntity<List<Map<String, String>>> getImages(@PathVariable int userId) {
         try {

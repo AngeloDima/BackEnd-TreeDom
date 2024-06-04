@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 
+//Modello per creare una Table nel DB per popolarlo di elementi che ci serviranno in un secondo momento per le varie CRUD
 @Entity
 public class fotoModel {
 

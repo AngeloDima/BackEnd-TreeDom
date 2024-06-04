@@ -19,6 +19,7 @@ public class FotoService {
     @Autowired
     private FotoRepository fotoRepository;
 
+    // Funzione per l'elaborazione della Post (img, descrizione, userId)
     public fotoModel saveImage(MultipartFile file, String description, int userId) throws Exception {
         try {
             byte[] imageData = file.getBytes();
@@ -33,6 +34,7 @@ public class FotoService {
         }
     }
 
+    // Funzione per l'elaborazione della GET (img, descrizione, userId)
     public List<Map<String, String>> getAllImagesDataAsBase64ByUserId(int userId) {
         List<fotoModel> images = fotoRepository.findByUserId(userId);
         List<Map<String, String>> imageDataList = new ArrayList<>();
