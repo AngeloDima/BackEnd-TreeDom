@@ -27,4 +27,8 @@ public class UserService {
     public userAuth findUserByName(String name) {
         return userRepository.findByName(name);
     }
+
+    public userAuth getUserById(int userId) {
+        return userRepository.findById(userId).orElse(null);
+    }
 }

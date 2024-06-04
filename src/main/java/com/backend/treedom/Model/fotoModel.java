@@ -4,7 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Lob; // Importa questa annotazione per l'utilizzo di @Lob
 
 @Entity
 public class fotoModel {
@@ -13,12 +13,9 @@ public class fotoModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private byte[] imagePath; // O puoi usare byte[] per memorizzare l'immagine stessa
+    @Lob
+    private byte[] imagePath;
 
-    @ManyToOne
-    private userAuth user;
-
-    // Getter e Setter
     public int getId() {
         return id;
     }
@@ -35,11 +32,4 @@ public class fotoModel {
         this.imagePath = imagePath;
     }
 
-    public userAuth getUser() {
-        return user;
-    }
-
-    public void setUser(userAuth user) {
-        this.user = user;
-    }
 }
