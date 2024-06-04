@@ -7,4 +7,5 @@ import com.backend.treedom.Model.fotoModel;
 
 @Repository
 public interface FotoRepository extends JpaRepository<fotoModel, Integer> {
+    fotoModel findById(Long id);
 }

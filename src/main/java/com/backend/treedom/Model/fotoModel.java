@@ -1,5 +1,7 @@
 package com.backend.treedom.Model;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,6 +17,16 @@ public class fotoModel {
 
     @Lob
     private byte[] imagePath;
+
+    private List<String> identifiedElements;
+
+    public List<String> getIdentifiedElements() {
+        return identifiedElements;
+    }
+
+    public void setIdentifiedElements(List<String> identifiedElements) {
+        this.identifiedElements = identifiedElements;
+    }
 
     public int getId() {
         return id;

@@ -1,6 +1,8 @@
 package com.backend.treedom.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Base64;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,16 @@ public class FotoService {
         } catch (Exception e) {
             throw new Exception("Impossibile salvare l'immagine: " + e.getMessage());
         }
+    }
+
+    public List<String> getAllImagesDataAsBase64() {
+        List<fotoModel> images = fotoRepository.findAll();
+        List<String> imageDataList = new ArrayList<>();
+        for (fotoModel image : images) {
+            String imageDataAsBase64 = Base64.getEncoder().encodeToString(image.getImagePath());
+            imageDataList.add(imageDataAsBase64);
+        }
+        return imageDataList;
     }
 
 }
