@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+//Modello per creare una Table nel DB per popolarlo di elementi che ci serviranno in un secondo momento per le varie CRUD
 
 @Entity
 public class userAuth {
