@@ -1,12 +1,11 @@
 package com.backend.treedom.Model;
 
-import java.util.List;
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Lob; // Importa questa annotazione per l'utilizzo di @Lob
+import jakarta.persistence.Lob;
 
 @Entity
 public class fotoModel {
@@ -18,13 +17,9 @@ public class fotoModel {
     @Lob
     private byte[] imagePath;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String description;
 
     public byte[] getImagePath() {
         return imagePath;
@@ -34,4 +29,19 @@ public class fotoModel {
         this.imagePath = imagePath;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

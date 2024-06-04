@@ -26,14 +26,14 @@ public class FotoController {
     private FotoService fotoService;
 
     @PostMapping("/uploadImage")
-    public ResponseEntity<?> uploadImage(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<?> uploadImage(@RequestParam("file") MultipartFile file,
+            @RequestParam("description") String description) {
         try {
-
             if (file.isEmpty()) {
                 return new ResponseEntity<>("Il file è vuoto", HttpStatus.BAD_REQUEST);
             }
 
-            fotoModel foto = fotoService.saveImage(file);
+            fotoModel foto = fotoService.saveImage(file, description);
 
             return new ResponseEntity<>(foto, HttpStatus.CREATED);
         } catch (Exception e) {

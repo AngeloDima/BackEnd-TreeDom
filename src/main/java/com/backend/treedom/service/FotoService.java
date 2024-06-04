@@ -17,11 +17,14 @@ public class FotoService {
     @Autowired
     private FotoRepository fotoRepository;
 
-    public fotoModel saveImage(MultipartFile file) throws Exception {
+    public fotoModel saveImage(MultipartFile file, String description) throws Exception {
         try {
             byte[] imageData = file.getBytes();
+
             fotoModel foto = new fotoModel();
             foto.setImagePath(imageData);
+            foto.setDescription(description);
+
             return fotoRepository.save(foto);
         } catch (Exception e) {
             throw new Exception("Impossibile salvare l'immagine: " + e.getMessage());
